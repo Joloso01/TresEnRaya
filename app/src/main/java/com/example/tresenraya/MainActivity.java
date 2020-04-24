@@ -14,7 +14,9 @@ public class MainActivity extends AppCompatActivity {
     String turno ="X";
     int numturno = 0;
     int victoriaJ1 = 0;
+    int victoriaJ2=0;
     EditText textoJ1;
+    EditText textoJ2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,20 @@ public class MainActivity extends AppCompatActivity {
         b9 = findViewById(R.id.button9);
         br = findViewById(R.id.buttonR);
         textoJ1= findViewById(R.id.editText5);
+        textoJ2= findViewById(R.id.editText6);
+        textoJ1.setText(String.valueOf(victoriaJ1));
+        textoJ2.setText(String.valueOf(victoriaJ2));
         resetButtons();
+        turno="X";
     }
 
     public void ButtonReset(View view){
         resetButtons();
+        victoriaJ1=0;
+        victoriaJ2=0;
+        textoJ1.setText(String.valueOf(victoriaJ1));
+        textoJ2.setText(String.valueOf(victoriaJ2));
+        turno="X";
     }
 
     public void click(View view){
@@ -116,24 +127,27 @@ public class MainActivity extends AppCompatActivity {
         b8.setText("");
         b9.setText("");
         numturno=0;
+        turno="O";
 
-        turno = "X";
     }
 
     void comprobarGanador(){
-        if((b1.getText().equals("X") && b4.getText().equals("X") && b7.getText().equals("X")) || (b1.getText().equals("X") && b2.getText().equals("X") && b3.getText().equals("X")) || (b3.getText().equals("X") && b6.getText().equals("X") && b9.getText().equals("X")) || (b7.getText().equals("X") && b8.getText().equals("X") && b9.getText().equals("X")) || (b1.getText().equals("X") && b5.getText().equals("X") && b9.getText().equals("X")) ||(b3.getText().equals("X") && b5.getText().equals("X") && b7.getText().equals("X")) )
-        {
-            Toast toast = Toast.makeText(this,"El jugador X Gana!!", Toast.LENGTH_LONG);
+        if((b1.getText().equals("X") && b4.getText().equals("X") && b7.getText().equals("X")) || (b1.getText().equals("X") && b2.getText().equals("X") && b3.getText().equals("X")) || (b3.getText().equals("X") && b6.getText().equals("X") && b9.getText().equals("X")) || (b7.getText().equals("X") && b8.getText().equals("X") && b9.getText().equals("X")) || (b1.getText().equals("X") && b5.getText().equals("X") && b9.getText().equals("X")) ||(b3.getText().equals("X") && b5.getText().equals("X") && b7.getText().equals("X") ||(b2.getText().equals("X") && b5.getText().equals("X") && b8.getText().equals("X")) )){
+
+            Toast toast = Toast.makeText(this, "El jugador X Gana!!", Toast.LENGTH_LONG);
             toast.show();
             resetButtons();
-            victoriaJ1=victoriaJ1+1;
-            turno="X";
-            textoJ1.setText(victoriaJ1);
-        }else if ((b1.getText().equals("O") && b4.getText().equals("O") && b7.getText().equals("O")) || (b1.getText().equals("O") && b2.getText().equals("O") && b3.getText().equals("O")) || (b3.getText().equals("O") && b6.getText().equals("O") && b9.getText().equals("O")) || (b7.getText().equals("O") && b8.getText().equals("O") && b9.getText().equals("O")) || (b1.getText().equals("O") && b5.getText().equals("O") && b9.getText().equals("O")) ||(b3.getText().equals("O") && b5.getText().equals("O") && b7.getText().equals("O"))){
+            victoriaJ1 = victoriaJ1 + 1;
+            textoJ1.setText(String.valueOf(victoriaJ1));
+
+
+        }else if ((b1.getText().equals("O") && b4.getText().equals("O") && b7.getText().equals("O")) || (b1.getText().equals("O") && b2.getText().equals("O") && b3.getText().equals("O")) || (b3.getText().equals("O") && b6.getText().equals("O") && b9.getText().equals("O")) || (b7.getText().equals("O") && b8.getText().equals("O") && b9.getText().equals("O")) || (b1.getText().equals("O") && b5.getText().equals("O") && b9.getText().equals("O")) ||(b3.getText().equals("O") && b5.getText().equals("O") && b7.getText().equals("O")) ||(b2.getText().equals("O") && b5.getText().equals("O") && b8.getText().equals("O"))){
             Toast toast = Toast.makeText(this,"El jugador O Gana!!", Toast.LENGTH_LONG);
             toast.show();
             resetButtons();
-            turno="X";
+            victoriaJ2=victoriaJ2+1;
+            textoJ2.setText(String.valueOf(victoriaJ2));
+
 
         }else if(numturno >= 8){
             Toast toast = Toast.makeText(this,"Empate!!", Toast.LENGTH_LONG);
